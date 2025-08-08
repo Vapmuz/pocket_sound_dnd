@@ -1,6 +1,6 @@
-from sound_code import SoundPlayer
-import pygame
 import unittest
+import pygame
+from sound_code import SoundPlayer
 
 class TestSoundPlayer(unittest.TestCase):
     """unit tests for the SoundPlayer class"""
@@ -19,6 +19,13 @@ class TestSoundPlayer(unittest.TestCase):
         self.player.play_music(self.test_file)
         self.player.pause_music()
         self.assertFalse(self.player.is_music_playing)
+    
+    def test_resume_music(self):
+        """Test resuming music."""
+        self.player.play_music(self.test_file)
+        self.player.pause_music()
+        self.player.resume_music()
+        self.assertTrue(self.player.is_music_playing)
 
     def test_stop_music(self):
         """Test stopping music."""
@@ -43,4 +50,7 @@ class TestSoundPlayer(unittest.TestCase):
         self.player.set_volume_sound(new_volume, self.test_file)
 
         self.assertEqual(self.player.volume_ambience, new_volume)
-
+s = SoundPlayer()
+s.play_music('test_ambience_music.wav')
+s.stop_music()
+s.play_music('long_test_ambience_music.wav')

@@ -23,8 +23,8 @@ class SoundPlayer:
         Args:
         """
         pygame.mixer.init()
-        self.music_file = './ambience_music/'
-        self.ambient_file = './instant_sound/'
+        self.music_file = './ambience_music'
+        self.ambient_file = './instant_sound'
         self.is_music_playing = False
         self.volume_ambience= 1.0
 
@@ -41,6 +41,7 @@ class SoundPlayer:
             pygame.mixer.music.load(music_path)
             pygame.mixer.music.play(-1)  # Loop indefinitely
             self.is_music_playing = True
+            print(f"Playing music: {name_music}")
 
     def pause_music(self):
         """
@@ -50,6 +51,15 @@ class SoundPlayer:
         if self.is_music_playing:
             pygame.mixer.music.pause()
             self.is_music_playing = False
+
+    def resume_music(self):
+        """
+        Resume the paused music.
+        If self.is.music_playing is False, it will resume the music.
+        """
+        if not self.is_music_playing:
+            pygame.mixer.music.unpause()
+            self.is_music_playing = True
 
     def stop_music(self):
         """
